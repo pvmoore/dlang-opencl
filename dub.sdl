@@ -1,0 +1,88 @@
+
+name "cl"
+platforms "windows"
+
+buildType "debug" {
+	buildOptions "debugMode" "debugInfo" "alwaysStackFrame" "stackStomping" "warningsAsErrors"
+}
+buildType "release" {
+	buildOptions "releaseMode" "optimize" "inline" "noBoundsCheck"
+}
+configuration "test" {
+	mainSourceFile "src/test.d"
+	targetType "executable"
+	targetName "bin-cl"
+	excludedSourceFiles "src/test_enqueue.d"
+	excludedSourceFiles "src/test_transfer.d"
+	excludedSourceFiles "src/test_utils.d"
+	excludedSourceFiles "src/test_image_read.d"
+	excludedSourceFiles "src/test_sort.d"
+}
+configuration "test_enqueue" {
+	mainSourceFile "src/test_enqueue.d"
+	targetType "executable"
+	targetName "bin-cl"
+	excludedSourceFiles "src/test.d"
+	excludedSourceFiles "src/test_transfer.d"
+	excludedSourceFiles "src/test_utils.d"
+	excludedSourceFiles "src/test_image_read.d"
+	excludedSourceFiles "src/test_sort.d"
+}
+configuration "test_sort" {
+	mainSourceFile "src/test_sort.d"
+	targetType "executable"
+	targetName "bin-cl"
+	excludedSourceFiles "src/test.d"
+	excludedSourceFiles "src/test_enqueue.d"
+	excludedSourceFiles "src/test_utils.d"
+	excludedSourceFiles "src/test_image_read.d"
+	excludedSourceFiles "src/test_transfer.d"
+}
+configuration "test_transfer" {
+	mainSourceFile "src/test_transfer.d"
+	targetType "executable"
+	targetName "bin-cl"
+	excludedSourceFiles "src/test.d"
+	excludedSourceFiles "src/test_enqueue.d"
+	excludedSourceFiles "src/test_utils.d"
+	excludedSourceFiles "src/test_image_read.d"
+	excludedSourceFiles "src/test_sort.d"
+}
+configuration "test_utils" {
+	mainSourceFile "src/test_utils.d"
+	targetType "executable"
+	targetName "bin-cl"
+	excludedSourceFiles "src/test.d"
+	excludedSourceFiles "src/test_enqueue.d"
+	excludedSourceFiles "src/test_transfer.d"
+	excludedSourceFiles "src/test_image_read.d"
+	excludedSourceFiles "src/test_sort.d"
+}
+configuration "test_image_read" {
+	mainSourceFile "src/test_image_read.d"
+	targetType "executable"
+	targetName "bin-cl"
+	excludedSourceFiles "src/test.d"
+	excludedSourceFiles "src/test_enqueue.d"
+	excludedSourceFiles "src/test_transfer.d"
+	excludedSourceFiles "src/test_utils.d"
+	excludedSourceFiles "src/test_sort.d"
+}
+configuration "library" {
+	targetType "library"
+	excludedSourceFiles "src/test.d"
+	excludedSourceFiles "src/test_enqueue.d"
+	excludedSourceFiles "src/test_image_read.d"
+	excludedSourceFiles "src/test_transfer.d"
+	excludedSourceFiles "src/test_utils.d"
+	excludedSourceFiles "src/test_sort.d"
+}
+
+# local
+dependency "common" version="~master"
+dependency "logging" version="~master"
+dependency "maths" version="~master"
+
+# external
+dependency "derelict-cl" version="~>3.2.0"
+
